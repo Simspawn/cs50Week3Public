@@ -1,0 +1,1816 @@
+
+Getting Started with the Sport of Programming
+
+Wednesday, 23 July 2014
+Getting Started with the Sport of Programming
+
+
+This document is to guide those people who want to get started or have just started with competitive programming.
+
+Originally, this document was prepared during the summers of 2014 to help the freshers of Indian Institute of Technology, Kanpur. So, we thought it might be useful to others as well.
+
+Prerequisite : Basics of any programming language. We will follow C/C++.
+
+    Note : Please note that this blog is not meant to explain concepts in details. The Aim of this blog is to guide you about which topics you should read and practice in a systematic way. However, in many places short explanations have been included for their relevance. Relevant problems are given after each topic. Proper sources are given from where these concepts can be studied. Where sources are not mentioned, that means these are very very popular and you can get to know about them just by a single google search. Move forward and enjoy it !
+
+    All the following things are from our experience and not something written on stone.
+
+
+    You will need to show motivation.
+    Languages that should be used
+        C/C++/JAVA (your choice)
+        We will focus on C++, JAVA is slow (one big advantage of JAVA is Big Integers, we will see later)
+        C++ is like superset of C with some additional tools. So, basically if you have knowledge of C, you are ready to code in C++ as well.  Otherwise go back and learn how to write codes in C/C++
+        Sometimes knowledge of PYTHON is helpful when you really need big integers.
+
+
+PARTICIPATE PARTICIPATE PARTICIPATE (the only mantra)
+
+    SPOJ: Its  a problem Archive (recommended for all beginners
+
+        Start with problems having maximum submissions. Solve first few problems (may be 20). Build some confidence. Then start following some good coders (check their initial submissions). Then start solving problems topic wise
+        Never get stuck for too long in the initial period. Google out your doubts and try to sort them out or you can discuss with someone (ONLY IN THE BEGINNING).
+        Before getting into live contests like codeforces or codechef, make sure that you have solved about 50-70 problems on SPOJ.
+
+
+    CODECHEF: Do all the three contests every month. Do participate in CodeChef LunchTime for sure.
+        Even if you are unable to solve a problem do always look at the editorials and then code it and get it accepted (this is the way you will learn).
+        And even if you are able to do it, do look at the codes of some good coders. See how they have implemented. Again you will learn.
+        Same point apply to TopCoder and Codeforces as well.
+
+
+    Codeforces: 4 to 5 short contests of 2 hour in a month (Do them once you develop some confidence).
+    TopCoder: Once you have proper experience and you can write codes very fast.
+
+
+Online Programming Contests:
+
+You write codes and submit them online . The judge runs your code and checks the output of your program for several inputs and gives the result based on your program’s outputs.You must follow exact I/O formats. For example, do not print statements like : “please enter a number”, etc :P
+
+Each Problem has constraints:
+Properly analyse the constraints  before you start coding.
+
+    Time Limit in seconds (gives you an insight of what is the order of solution it expects) -> order analysis(discussed later).
+    The constraints on input ( very imp ): Most of the time you can correctly guess the order of the solution by analysing the input constraints and time limit .
+    Memory Limit ( You need not bother unless you are using insanely large amount of memory).
+
+
+Types of errors you may encounter apart from wrong answer :
+
+    Run Time Error (Most Encountered)
+        Segmentation fault ( accessing an illegal memory address)
+            You declared array of smaller size than required or you are trying to access negative indices .
+        Declaration of an array of HUGE HUGE(more than 10^8 ints) size -_- .
+        Dividing by Zero / Taking modulo with zero :O .
+        USE gdb ( will learn in coming lectures )
+    Compilation Error
+        You need to learn how to code in C++.
+        USE GNU G++ compiler or IDEONE(be careful to make codes private).
+    Time Limit Exceed (TLE)
+        You program failed to generate all output within given time limit.
+        Input Files are not randomly generated , they are made such that wrong code does not pass.
+        Always think of worst cases before you start coding .Always try to avoid TLE.
+        Sometimes a little optimizations are required and sometimes you really need a totally new and efficient algorithm (this you will learn with time).
+        So whenever you are in doubt that your code will pass or not .Most of the time it won’t pass .
+        Again do proper order analysis of your solution .
+
+
+
+Sometimes when you are stuck . Check  the running time of other accepted codes to take an insight like what Order of solution other people are writing / what amount of memory they are using.
+
+
+4 MB ~ array of size 10^6 . Or 2-d array of size 10^3*10^3
+Standard Memory limits are of Order of 256MB
+Order analysis :
+Order of a program is a function dependent on the algorithm you code. We wont go in theoretical details just think Order of program as the total number of steps that program will take to generate output generally a function based on input like O(n^2) O(n) O(log n) .
+
+
+Suppose you write a program to add N numbers .See the following code.
+
+
+
+int cur,sum=0;
+for(int i=0;i<n;++i)
+{
+    scanf(“%d”,&curr);
+    sum = sum+curr;
+}
+
+Total number of computations = n*(1+1+1+1)
+n times checking i
+n times i++
+n times scanf
+n times + operating
+
+
+So total of 4*N.
+We remove the constant and call it O(N)
+This is the simplest I can explain.You will get further understanding with practice and learning.
+
+
+You must know running time of these algorithms (MUST)
+Binary Search -> ?
+Merge / Quick sort -> ?
+Searching an element in sorted/unsorted array -> ?
+HCF / LCM / Factorization / Prime CHeck ?
+
+
+We all know the computation power of a processor is also limited.
+Assume 1 sec ~ 10^8 operations per second . (for spoj old server it is 4*10^6).
+Keep this in mind while solving any problem.
+
+
+If your program takes O(n^2) steps and problems has T test cases . Then total order is T*N^2.
+
+
+For T < 100 and N < 1000 . It will pass .
+But for T < 1000 and N < 1000 it wont .
+Neither for T < 10 and N < 10000
+
+
+
+
+INT OVERFLOW :
+Sum three numbers.
+Constraints :
+0 < a,b,c < 10^9
+int main()
+{
+    int a , b,c;
+    scanf(“%d %d %d”,&a,&b,&c);
+    int ans = a + b + c;
+    printf(“%d”,ans);
+    return 0;
+}
+
+
+This program won't give correct output for all cases as 3*10^9 cannot be stored in INTS you need long long int or unsigned int (4*10^9).
+what if 0
+
+
+Comparing Doubles :
+int main()
+{
+float a ;
+scanf(“%f”,&a);
+if(a == 10 ) printf(“YES”);
+return 0;
+}
+float / double don’t have infinite precision . BEWARE ( 6/15 digit precision for them respectively)
+Try the following problem.
+http://www.spoj.com/problems/GAMES/
+
+
+
+Standard Template Library (STL):
+In your code sometimes you need some Data Structures(DS) and some functions which are used quite frequently. They already have lots of standard functions and data structures implemented within itself which we can use directly.
+
+    Data Structures  ( To be discussed in later lectures )
+        Vectors
+        Stack
+        Queue
+        Priority Queue
+        Set
+        Map
+     Functions
+        Sort
+        Reverse
+        GCD
+        Swap
+        next_permutation
+        binary_search (left + right)
+        max, min
+        pow, powl
+        memset
+
+
+
+Now imagine writing codes using these inbuilt functions and data structures . It would be much more simpler now.
+
+What headers/libraries should you include ?
+Basically the above functions / DS are in different libraries. So in some cases you may need to include many headers . But you can include everything using just one header.
+
+        #include <bits/stdc++.h>
+Try the following problem :
+www.codechef.com/problems/ANUUND
+Which of the above inbuilt function did you use ?
+What if you need to sort an Array of structure ?
+You can either make a struct and write compare function for it.(Read more at www.cplusplus.com)Or you can use an vector of pair.
+Read This:
+http://community.topcoder.com/tc?module=Static&d1=tutorials&d2=sorting
+
+Now you are ready to start competitive programming .
+You can continue reading this doc or get started on your own . Good luck :)
+First, you must learn the basic and well known algorithms . Not only the algorithm but you must also understand why that works , proof , code it and analyze it . To know what basic algorithms you must know you can read :
+
+    http://www.quora.com/Algorithms/What-is-needed-to-become-good-algorithmist-like-top-rankers-in-Topcoder-Spoj-GCJ
+    http://www.quora.com/Algorithms/What-are-the-10-algorithms-one-must-know-in-order-to-solve-most-algorithm-challenges-puzzles
+    http://www.quora.com/Computer-Science/What-are-the-10-must-know-algorithms-and-data-structures-for-a-software-engineer
+
+
+
+Also read these answers on how to start competitive programming and get good at it.
+
+    http://www.quora.com/ACM-ICPC-1/For-an-ACM-beginner-how-should-I-start
+    http://www.quora.com/Can-I-crack-the-ACM-ICPC-in-1-5-years-if-I-have-to-start-from-scratch
+    http://www.quora.com/Competitive-Programming/What-was-Anudeep-Nekkantis-Competitive-Programming-strategy-to-become-35th-in-Global-ranking-in-just-6-7-months
+
+
+
+TopCoder has very nice tutorials on some topics, read them here .
+
+You can also read this book topic wise to understand an algorithm in a deeper way http://ldc.usb.ve/~xiomara/ci2525/ALG_3rd.pdf.
+
+
+To get good at writing fast codes and improving your implementation, you can follow this:
+My personal advice is to start practicing on TopCoder . Start with Div2 250 master it then start with Div2 500 master it then move to Div1 250 .Also read the editorials of problem you solve and the codes of fastest submissions to learn how to implement codes in simple and elegant way.Meanwhile keep learning algorithms and keep practicing them on SPOJ or CodeChef or Codeforces . And do read the tutorials, after a time you will realize that the tricks and methods to solve are repeating themselves . We learn from practice only . If you read same thing 5 times in different tutorials then it will not be stored in your short term memory only right .
+
+
+Below are few topics to start with and problems related to those topic.
+They are very basic stuffs and you can learn all you need to know by just googling them out.
+
+“When i will get some time I will try to update and give more details about the topics a newbie should cover.”
+Try to do all the problems stated below if you are a beginner.
+
+PRIMES
+
+    Prime Check ( O(log n) also possible read about miller-rabbin )
+    Factorization
+    Number of factors
+    Sum of factors
+    Generating Primes using sieve of eratosthenes
+    Bounds on number of primes till N
+    Euler’s totient function
+    Practice Problems :
+            http://www.spoj.com/problems/NDIV/
+            http://codeforces.com/problemset/problem/431/B
+            http://www.spoj.com/problems/GAMES/
+            http://www.spoj.com/problems/GCJ101BB/
+            http://www.spoj.com/problems/GCJ1C09A/
+            http://www.spoj.com/problems/MAIN72/
+            http://www.spoj.com/problems/WINDVANE/
+            http://www.spoj.com/problems/NDIV/
+            http://www.spoj.com/problems/PTIME/
+            http://www.spoj.com/problems/NDIVPHI/
+            http://www.spoj.com/problems/NOSQ/
+            http://www.spoj.com/problems/AFS/
+            http://www.codechef.com/MAY13/problems/WITMATH/
+            http://www.spoj.com/problems/CUBEFR/
+
+
+
+    Try as many as you can.
+    Other things that you can read meanwhile
+        Euler Totient function and Euler's theorem [[ READ ]]
+        Modulo function and its properties
+        Miller-Rabin Algorithm            [[ READ ]]
+        Extended Euclid's Algorithm        [[ READ ]]
+        Keep exploring STL
+        Prove running time of HCF is O(log n)
+        Try sorting of structures
+        Practice few problems on several Online Judges
+        Try to do + - * operations on large numbers(<1000 digits) using char array (for learning implementation)
+        Number of factors and sum of factors in sqrt(n) time ,Number of primes till N
+
+
+
+Basic Number Theory
+
+    Modulo operations and Inverse modulo
+    How to compute a ^ b % p in O(log b), where p is prime
+    Find Nth fibonacci number modulo p [Read Matrix exponential]
+    n! % p  ( what if we have lots of test cases )
+    ETF ( calculation / calculation using sieve )
+    Euler theorem , Fermat’s little theorem , Wilson theorem            [[ READ ]]
+    nCr % p (inverse modulo) ( read about extended euclid algorithm)
+    (p-1)! % p  for prime p, Use of fermat theorem in Miller-Rabin ( Probabilistic ) ( miller-rabin.appspot.com )
+    64 Choose 32 < 10^19 we can precompute till herein a 2 dimentional array [Learn use of the recursive relation : (n+1)Cr = nCr + nC(r-1)]
+    Number of ways to traverse in 2D matrix[Catalan Number] ( what if some places are blocked ? Hint : DP)
+    a^b % c . Given Hcf(a,c) = 1 .And  what if Hcf(a,c) ! = 1.  [[ READ Chineese Remainder Theorem, not used much in competition]]
+    Matrix Exponentiation
+    solving linear recurrence using matrix exponentiation(like fibonacci)
+
+
+    Practice problems:
+        http://www.spoj.com/problems/DCEPC11B
+        http://www.codechef.com/MAY13/problems/FTRIP/
+        http://www.spoj.com/problems/FIBOSUM/
+        http://www.spoj.com/problems/POWPOW/
+        http://www.spoj.com/problems/POWPOW2 [[ CRT ]]
+
+
+    Go through these tutorials (The listed problems might be tough but do read the tutorial)
+        http://community.topcoder.com/tc?module=Static&d1=tutorials&d2=primalityTesting
+        http://community.topcoder.com/tc?module=Static&d1=tutorials&d2=combinatorics
+        http://community.topcoder.com/tc?module=Static&d1=tutorials&d2=math_for_topcoders
+        http://community.topcoder.com/tc?module=Static&d1=tutorials&d2=primeNumbers
+
+Power of BITS
+
+    Numbers are stored as binary bits in the memory so bits manipulation are alway faster.
+    Bitwise 'or' operator    : |
+    Bitwise 'and' operator : &
+    Bitwise 'xor' operator  : ^
+    Bitwise 'left shift'         : <<
+    Bitwise 'right shift'       : >>
+    Memset and its uses using function : sizeof()
+    Bitmask and use of Bitmask in Dynamic Programming [[subset DP]]
+    Some cool Tricks
+        n = n * 2 :: n = n << 1
+        n = n /2  :: n = n >> 1
+        checking if n is power of 2 (1,2,4,8…) ::checking !(n & (n-1))
+        if x is max power of 2 dividing n, then x = (n & -n)
+        Total number of bits which are set in n = __builtin_popcount(n)
+        setting xth bit of n  :: n |= (1<<x)
+        checking if xth bit of n is set :: checking if  n&(1<<x) is non zero
+    Problem : You are given N numbers and a numbers S. Check if there exist some subset of the given numbers which sums equal to S .What if you are asked to compute the number of such subsets ?
+    Practice problems:
+        http://www.spoj.com/problems/SPCO/
+        http://codeforces.com/problemset/problem/114/B
+        More will be added later
+
+    Read this for further knowledge
+        http://community.topcoder.com/tc?module=Static&d1=tutorials&d2=bitManipulation
+
+
+Binary  Search
+
+    Try this : http://codeforces.com/problemset/problem/431/D
+    Understand the concept of binary search. Both left_binary_search and right_binary_search. Try to implement it on your own. Look at others implementation.
+    sample implementation :
+
+int l = 0, r = 10000,  key_val = SOME_VALUE, m;
+while (r - l > 1)
+{
+m = (l+r) >> 1;
+int val = some_non_decreasing_function(m);
+if(val < key_val) l = m;
+else r = m;
+}
+if  (some_non_decreasing_function(l) == key_val ) return l;
+else return r;
+
+// this can be modified in a variety of ways, as required in the problem
+
+    Practice Problems:
+        http://www.spoj.com/problems/AGGRCOW/
+        http://codeforces.com/problemset/problem/431/D [[Learn’t something new ?]]
+        http://www.spoj.com/problems/PIE/
+        http://www.spoj.com/problems/TETRA/
+        http://www.spoj.com/problems/KOPC12A/
+
+
+
+
+The Beauty of Standard Template Library of C++
+
+
+    Vectors in one dimension and two dimension
+        http://www.codechef.com/MAY14/problems/CHEFBM
+
+    solve : http://www.codechef.com/MAY14/problems/COMPILER
+    Now use stacks to taste its beauty and solve the following problem too.
+    http://codeforces.com/problemset/problem/344/D
+
+    Queue
+        http://www.spoj.com/problems/DONALDO/
+
+    Priority Queue
+        http://codeforces.com/gym/100247/problem/I [[First try without using Priority queue]]
+
+    Set
+        http://www.spoj.com/problems/FACEFRND/ [[First try without using set ]]
+            What if I tell you that apart from scanning the input this problem can be done in 2 lines ? Interesting ? Think!
+
+    Map
+        http://www.codechef.com/MARCH13/problems/TOTR/
+        http://codeforces.com/gym/100247/problem/C
+
+
+
+
+Some Practice Problems Before you proceed further
+
+    http://www.spoj.com/problems/DCEPC11B/
+    http://www.spoj.com/problems/AGGRCOW/
+    http://www.codechef.com/problems/CHEFBM
+    http://www.codechef.com/JUNE13/problems/PERMUTE
+    http://www.spoj.com/problems/KOPC12A/ (recommended)
+    http://www.codechef.com/MAY13/problems/WITMATH/ (recommended)
+    http://codeforces.com/problemset/problem/431/D (recommended)
+    http://www.spoj.com/problems/SPCO/
+    http://www.spoj.com/problems/FIBOSUM/
+    http://www.spoj.com/problems/POWPOW/ (recommended)
+    http://www.codechef.com/AUG13/problems/CNTSOLS/
+    http://www.spoj.com/problems/IOPC_14F/
+    http://www.spoj.com/problems/NDIVPHI/ (recommended)
+    http://www.spoj.com/problems/AU12/ (easy)
+    http://www.spoj.com/problems/ETF/ (easy)
+    http://codeforces.com/problemset/problem/114/B (easy)
+    http://www.spoj.com/problems/HISTOGRA/ [[Hint : use stacks]]
+    http://www.spoj.com/problems/HOMO/
+
+    http://www.spoj.com/problems/NGM2/
+
+
+
+
+GRAPHS
+
+    Try the following problems :
+        Prime Path
+        Prayatna PR
+
+Any Ideas ?
+
+    Def : Think graphs as a relation between node , related nodes are connected via edge.
+
+
+    How to store a graph ? ( space complexity )
+        Adjacency Matrix ( useful in dense graph)
+        Adjacency List (useful in sparse graph) O(min(deg(v),deg(u)))
+
+
+    You must know the following terminologies regarding Graphs :
+        Neighbours
+        Node
+        Edge
+        Degree of vertices
+        Directed Graph
+        Connected Graph
+        Undirected Graph
+        Connected components
+        Articulation Points
+        Articulation Bridges
+        Tree [[ connected graph with N nodes and N-1 edges]]
+            Leaves
+            Children
+            Parent
+            Ancestor
+            Rooted Tree
+            Binary Tree
+            K-ary Tree
+        Cycle in graph
+        Path
+        Walk
+        Directed Acyclic Graph [[ DAG ]]
+            Topological Sorting (Not very important, in my opinion)
+        Bipartite Graph ( Tree is an example of Bipartite Graph . Interesting Isn’t it.)
+
+
+    Breadth First Search/Traversal (BFS) [[ very important, master it as soon as possible]]
+        Application : Shortest path in unweighted graphs
+
+
+    Depth First Search/Traversal (DFS) [[very very important, master it as soon as possible]]
+        Infinitely many applications, just kidding :P (But Its true, Indeed !)
+    Now try the problems given at the beginning !
+    Practice Problems :
+        http://www.codechef.com/JUNE14/problems/DIGJUMP
+        http://www.spoj.com/problems/PRATA/
+        http://www.spoj.com/problems/ONEZERO/
+        http://www.spoj.com/problems/PPATH/
+        http://www.spoj.com/problems/PARADOX/
+        http://www.spoj.com/problems/HERDING/
+        http://www.spoj.com/problems/PT07Z/
+        http://www.spoj.com/problems/NICEBTRE/
+        http://www.spoj.com/problems/CERC07K/
+        http://www.spoj.com/problems/BUGLIFE/
+        http://www.spoj.com/problems/COMCB/
+        http://www.spoj.com/problems/NAKANJ/
+        http://www.codechef.com/IOPC2013/problems/IOPC13N/
+        http://www.codechef.com/IOPC2013/problems/IOPC13G/
+        http://www.codechef.com/IOPC2013/problems/IOPC13C
+
+    Problem : You are given a Graph. Find the number of connected components in the Graph.
+        Hint : DFS or BFS.
+    Problem : You are given a grid with few cells blocked and others open. You are given a cell , call is source, and another cell , call it dest. You can move from some cell u to some another cell v if cell v is open and it is adjacent to cell u. You have to find the shortest path from source to dest.
+        Hint : Try to think the grid as a Graph and apply some shortest path algorithm. Which one ? You think !
+    Problem : You are given a Tree. You need to find two vertices u and v such that distance between them maximum.
+        Hint : Try to do it in O(1) number of DFS or BFS !
+
+
+
+GREEDY ALGORITHMS
+
+Greedy Algorithms are one of the most intuitive algorithms. Whenever we see a problem we first try to apply some greedy strategy to get the answer(we humans are greedy, aren’t we :P ? ).
+Read this tutorial for further insight or you can directly attempt the problems most of the greedy approaches are quite simple and easy to understand/formulate.But many times the proving part might be difficult. But you should always try to prove your greedy approach because most the times it happens that you later realise that you solution does not give the optimal answer.
+
+http://community.topcoder.com/tc?module=Static&d1=tutorials&d2=greedyAlg
+
+
+They are generally used in optimization problems and there exists an optimal substructure to the problem and solutions are generally O(n log n) (sorting) or O(n) (single pass).
+
+Problems List:
+
+    http://www.spoj.com/problems/BAISED/
+    http://www.spoj.com/problems/BALIFE/
+    http://www.spoj.com/problems/GCJ101BB/
+    http://www.codechef.com/problems/FGFS
+    http://www.codechef.com/problems/KNPSK
+    http://www.codechef.com/problems/LEMUSIC
+    http://www.spoj.com/problems/ARRANGE/
+    http://www.spoj.com/problems/FASHION/
+
+
+Q)A thief breaks into a shop and finds there are N items weight of ith item is Wi and cost of ith item is Ci and thief has a bag of which can carry at most W units of weight. Obviously thief wants to have maximum profit . What strategy he should choose if :
+
+Case 1: If he is allowed to take fractional part of items (like assume item to be a bag of rice and you can take whatever fraction of rice you want). [Hint :: greedy])
+
+Case 2:If he cannot break the items in fractional parts. Will now greedy work ? Try to make some test cases for which greedy will fail.
+
+Most of time when greedy fails its the problem can be solved by Dynamic Programming(DP).
+
+
+DYNAMIC PROGRAMMING [[ DP ]]
+
+In my view this is one the most important topic in competitive programming. The problems are simple and easy to code but hard to master. Practice as many DP problems as much possible.
+
+You must go through this topcoder tutorial and you must try to solve all the problems listed below in this doc.
+
+( These are basic problems and some with few variations that we feel one should know. You must practice other DP problems too)
+Problems list:
+
+    http://www.spoj.com/problems/COINS/
+    Read about Maximum Sum Subarray [I dint find exact question on any online judge as its very very basic]
+    http://www.codechef.com/problems/DELISH
+    http://www.codechef.com/problems/KSUBSUM/
+    Q)Finding NCR [Using above discussed recursion in math section and DP]
+    https://projecteuler.net/problem=18
+    Q)Given a matrix filled with numbers.You are initially at upper left corner , you have to reach to the lower right corner.In each step you can either go right or down.When ever you go to a cell you points increase by value of that cell.What is the maximim possible points you can gain?
+    http://www.codechef.com/JUNE13/problems/LEMOUSE
+    http://www.spoj.com/problems/MAXWOODS/
+    http://www.spoj.com/problems/EDIST/
+    http://www.spoj.com/problems/ADFRUITS/
+    http://www.spoj.com/problems/IOIPALIN/
+    http://www.codechef.com/problems/PPTEST/
+    http://www.codechef.com/problems/MAXPR
+    http://www.codechef.com/problems/LEBALONS
+    http://www.codechef.com/problems/DBOY/
+    http://www.codechef.com/problems/HAREJUMP
+
+
+For further advanced topics you can follow topcoder tutorials.
+This also might be helpful introduction to competitive programming - Stanford.
+
+-----------------------------------------------------------------------------------
+
+    If you have any queries / suggestions please contact us.
+
+
+    Abhilash Kumar
+    abhilak@iitk.ac.in
+    https://www.facebook.com/abhilash.276
+
+
+    Triveni Mahatha
+    triveni@iitk.ac.in
+    https://www.facebook.com/triveni.mahatha
+
+
+    Co ordinators @ Programming club IIT Kanpur [2014-15]
+    https://www.facebook.com/groups/pclubiitk/
+
+
+
+Posted by Triveni Mahatha at 06:51 Email ThisBlogThis!Share to XShare to FacebookShare to Pinterest
+235 comments:
+
+    Gourav25 July 2014 at 08:42
+
+    This comment has been removed by the author.
+    Reply
+    Gourav25 July 2014 at 08:45
+
+    well this is going to be very useful guide for beginners like me..please keep updating this post with more necessary practice problems. It would be so helpful to solve exact right niche problems instead of wasting time on non-useful ones. happy coding :)
+    Reply
+    Unknown30 July 2014 at 08:55
+
+    I truely will follow what you write, whenever you write, on this blog. Keep them coming.
+    Thank you for not being selfish. Happy to see these kind of people.
+    Reply
+    Unknown31 July 2014 at 20:44
+
+    good initiative there !!!!
+    Reply
+    Unknown17 August 2014 at 09:58
+
+    Awesome advise! thank a lot !
+    Reply
+    Unknown28 August 2014 at 02:44
+
+    This comment has been removed by the author.
+    Reply
+    VC7 September 2014 at 02:26
+
+    Thanks a ton for this awesome guide! Its difficult to follow the coding groups in college sometimes due to time/projects/other factors, but this guide is a great way to progress in a systematic manner.
+    What kind of questions should i start with on spoj? Sort by accuracy and solve the ones with highest number of submissions + high accuracy?
+    Reply
+    Puneet Singh4 November 2014 at 18:46
+
+    Thanks, its really really concise and informative.
+    Reply
+    Abhishek Shetty7 November 2014 at 12:16
+
+    Hi!,
+    Given link for topic wise book for algo is not working. Is it the clrs ?
+    Reply
+    Anushree11 November 2014 at 05:05
+
+    http://ldc.usb.ve/~xiomara/ci2525/ALG_3rd.pdf is not available. Could you share any alternate link or the book itself?
+    Reply
+    Unknown15 December 2014 at 09:11
+
+    Thanks for sharing the info...very helpful...
+    Reply
+    Unknown15 December 2014 at 09:13
+
+    Also please keep updating the blog.....
+    Reply
+    Unknown20 December 2014 at 06:16
+
+    Really fantastic discussion. Thank you for sharing this.
+
+    SAP HR
+    SAP Accounting
+    SAP CRM
+    SAP Support
+    Reply
+    Replies
+        Unknown28 August 2021 at 05:02
+
+        Nice Post.IntelliMindz is the best IT Training in Bangalore with placement, offering 200 and more software courses with 100% Placement Assistance.
+
+        Hadoop Online Training
+        Hadoop Course in Bangalore
+        Hadoop Course in Chennai
+
+        SAP ERP Online Training
+        SAP ERP Training in Bangalore
+        SAP ERP Training in Chennai
+
+        SAP BW Online Training
+        SAP BW Training in Bangalore
+        SAP BW Training in Chennai
+        Reply
+    Unknown12 January 2015 at 04:00
+
+    This comment has been removed by the author.
+    Reply
+    Unknown12 January 2015 at 04:01
+
+    Great piece of work....triveni
+    Reply
+    Chandrashekhar Kumar9 April 2015 at 13:52
+
+    Great info !
+
+    My personal favourite is knuth's volumes along with the book
+    Cracking Programming Interviews: 500 Questions With Solutions by Sergei Nakariakov
+    Reply
+    Unknown15 May 2015 at 02:37
+
+    Thanks for sharing the information. It is very useful for my future. keep sharing
+    baixar facebook
+    baixar whatsapp
+    unblocked games
+    Reply
+    Unknown4 August 2015 at 12:42
+
+    Very useful! thank you so much for sharing this! keep sharing more! (Y)
+    Reply
+    Unknown2 September 2015 at 13:12
+
+    Thank you sharing your experience. It is very much useful.BTW i was looking for someone who can guide me how to be a good coder.Keep sharing more ideas and thoughts in future...
+    Reply
+    دليلك للمعلوميات6 September 2015 at 04:14
+
+    social online
+    كشف تسربات
+    تحميل كتاب شمس المعارف الكبرى
+    تحميل لعبة كراش
+    نموذج سيرة ذاتية
+
+    Reply
+    Darshan1 November 2015 at 10:51
+
+    Thank you so much :)
+    Reply
+    John Adam2 November 2015 at 07:45
+
+    i am very happy to read this article.. thanks for giving us nice info. fantastic walk-through. i appreciate this post.
+
+    sports investment
+    Reply
+    Unknown3 December 2015 at 07:21
+
+    very helpful for beginners who don't know how to start their journey
+    and well done bro!!
+    Reply
+    Anonymous8 December 2015 at 02:40
+
+    Learn highest paid programming language Earlang tutorial
+    Reply
+    philipkotler1121 December 2015 at 04:37
+
+    Thanks for the information and links you shared this is so should be a useful and quite informative!
+    Body building
+    Reply
+    philipkotler1122 December 2015 at 03:05
+
+    Valuable site, where did u come up with the information in this posting? I am pleased I discovered it though, ill be checking back soon to find out what new content pieces u have.
+    bubble football london
+    Reply
+    Jhon Marshal26 December 2015 at 01:05
+
+    I have to say this has been probably the most helpful posts for me. Please keep it up. I cant wait to read whats next.
+    Body By Vi Results
+    Reply
+    Anonymous6 January 2016 at 09:30
+
+    There are certainly a lot of details like that to take into consideration.
+    zorb football uk
+    Reply
+    Unknown10 January 2016 at 08:56
+
+    Sir, I am student of 3rd year btech of electronics and communication engineering from indian school of mines. I want to know that what is real use of competitive programming. I also want to do competitive programming but i have not so much time. Will i become good progrmmer in six months ? Or i leave this and do another thing like php developer or backend developing ?
+    Reply
+    Unknown15 January 2016 at 11:49
+
+    This comment has been removed by the author.
+    Reply
+    Unknown15 January 2016 at 11:55
+
+    The TopCoder tutorials link above doesn't work for me, but this does
+    TopCoder tutorials
+    Reply
+    Unknown21 January 2016 at 02:47
+
+    This point has dependably been one of my most loved subjects to peruse about. I have observed your post to be exceptionally energizing and brimming with great data. I will check your different articles in the blink of an eye. integrated voice response
+    Reply
+    Gennie31 January 2016 at 08:52
+
+    This is too good..
+    Thanks for sharing this code,.
+    angularjs training
+    Reply
+    Muhammad Shumail9 February 2016 at 12:23
+
+    What is diamond problem?
+    Reply
+    Replies
+        Unknown27 November 2016 at 03:09
+
+        Do you mean diamond problem of inheritance in c++ ?
+        Reply
+    John Adam29 February 2016 at 11:16
+
+    I like your post & I will always be coming frequently to read more of your post. Thank you very much for your post once more.
+    edmonton basketball
+    Reply
+    Anonymous12 March 2016 at 01:11
+
+    Resources like the one you mentioned here will be very useful to me! I will post a link to this page on my blog.
+    zorb football hire
+    Reply
+    Unknown22 March 2016 at 01:51
+
+    Resources like the one you mentioned here will be very useful to me! I will post a link to this page on my blog.
+    fu hai feng
+    Reply
+    steward24 March 2016 at 09:07
+
+    One of the best article about programming language,
+    AngularJs development companies
+    Reply
+    Unknown28 March 2016 at 21:23
+
+    This comment has been removed by the author.
+    Reply
+    Unknown28 March 2016 at 21:25
+
+    You can see the solutions to above problems in case of difficulty at https://github.com/tyagi-iiitv/Spoj-solutions
+    Reply
+    Jr. Williams15 April 2016 at 09:08
+
+    I think this post will be a fine read for my blog readers too, could you please allow me to post a link to my blog. I am sure my guests will find that very useful.
+    bubble football
+    Reply
+    Replies
+        Triveni Mahatha15 April 2016 at 21:42
+
+        Sure. Do post this link if you think people will be benefited.
+        Reply
+    Jhon Marshal18 April 2016 at 00:28
+
+    Your Post is very useful, I am truly happy to post my note on this blog . It helped me with ocean of awareness so I really consider you will do much better in the future.
+    parents
+    Reply
+    Unknown11 May 2016 at 10:03
+
+    thanks a lot
+    Reply
+    Anonymous8 June 2016 at 00:07
+
+    Great article it was such an interesting and informative article.
+    weight training videos
+    Reply
+    Toni Smith15 June 2016 at 22:25
+
+    I definitely appreciate your blog. Excellent work and very nice information about the sports.
+    Skater Owned Skate Shop
+    Reply
+    Jhon Marshal20 June 2016 at 21:49
+
+    Hi I really appreciate all the great content you have here. I am glad I cam across it!
+    Bet
+    Reply
+    Jr. Williams24 June 2016 at 06:11
+
+    I like your post & I will always be coming frequently to read more of your post. Thank you very much for your post once more.
+    WWE Facts
+    Reply
+    mrjerry5 July 2016 at 00:28
+
+    nic post...
+    http://mkniit.blogspot.in
+    Reply
+    James Brown19 July 2016 at 10:48
+
+    Great article about the sports and this is such an interesting and informative article.
+    Quattro - Peg Skate Documentary
+    Reply
+    Isabel Bent19 July 2016 at 13:09
+
+    Good information and great post about the sports and i really like it.
+    Golf Equipment
+    Reply
+    YouLoseBellyFat17 August 2016 at 02:57
+
+    we made web site c codes for beginners
+    Reply
+    umer17 September 2016 at 04:38
+
+    wow that is so interesting and it's a great information. thanks
+    Facts about Original ECW
+    Reply
+    harrytommy19 September 2016 at 02:19
+
+    Thanks nice comparative description.nice job
+    Behind The Titantron
+    Reply
+    James Brown28 September 2016 at 02:57
+
+    Super blog and very nice and useful information about the sports and wrestling.good work.
+
+    Top 10 BEST WWE Wrestling Games
+    Reply
+    Andrew Carter3 October 2016 at 13:17
+
+    Nice article have great information about the play games.
+    Facts About Wrestling Video Games
+    Reply
+    Unknown26 October 2016 at 01:09
+
+    Oh Nice Post i will share my facebook friend and other net work
+    Pokémon GO APK Download
+    Reply
+    Unknown9 November 2016 at 21:57
+
+    I found some useful information in your blog, it was awesome to read, thanks for sharing.
+    Kid Coders Singapore
+    Reply
+    Unknown16 November 2016 at 02:20
+
+    Thanks for Info!!
+    10keythings
+    Reply
+    harrytommy21 November 2016 at 01:01
+
+    Most valuable and fantastic blog I really appreciate your work which you have done about the 50 AMAZING facts of the WWE,many thanks and keep it up.
+    50 AMAZING facts of the WWE
+    Reply
+    Isabel Bent2 December 2016 at 03:10
+
+    Nice work and all information about the 50 AMAZING facts of the WWE that's are very amazing well done.
+    50 AMAZING facts of the WWE
+    Reply
+    Unknown3 January 2017 at 02:42
+
+    Best workout to get in shape?
+    Fat burning Training
+    Reply
+    harrytommy6 January 2017 at 04:42
+
+    Really you blog have very interesting and very valuable information about the School Assembly Tour.
+    School Assembly Tour
+    Reply
+    James Brown19 April 2017 at 07:14
+
+    This is such a great blog and the offers about addidas shoes are too good.
+    I really liked this brand.
+
+
+    Yezzy Replica Adidas
+    Reply
+    Unknown13 June 2017 at 03:25
+
+    I truly Follow what you write and i want to thank you for sharing this content with us
+    hetakshi patel
+    http://www.skywardsoftwares.co.in
+    Reply
+    A.J.15 June 2017 at 22:43
+
+    I really appreciate the post here. Thank you so much!
+    Reply
+    Unknown12 July 2017 at 21:44
+
+    Seriously this is a amazing blog for kids, Thanks for shared wonderful info!!!
+    Children Learning Programs Singapore
+    Reply
+    thomas john14 July 2017 at 00:20
+
+    Nice blog and the description about it very amazing I really liked it.
+
+    Entrepreneur John Salley
+    Reply
+    Helpadya15 July 2017 at 03:41
+
+    Hey your blog is very nice, such useful information you are sharing. I really like your blog the information is very accurate and if you want to know more about free ad posting service,www.helpadya.com there is another website with best information.
+    Reply
+    Unknown16 July 2017 at 23:32
+
+    Online Basketball Training Online Basketball Training
+    Reply
+    Petersons31 July 2017 at 01:37
+
+    Thanks for the information you shared that's so useful and quite informative and i have taken those into consideration....
+
+    Design Custom Sport Uniforms
+    Reply
+    vaiybora1 August 2017 at 11:19
+
+    Thanks for providing good information,Thanks for your sharing.
+
+    หนังฝรั่ง
+    Reply
+    Ned Polian6 August 2017 at 05:09
+
+    Thanks for taking the time to discuss this, I feel strongly about it and love learning more on this topic.
+    Ghana Lotto
+    Reply
+    Anonymous7 August 2017 at 12:11
+
+    Impressive web site, Distinguished feedback that I can tackle. Im moving forward and may apply to my current job as a pet sitter, which is very enjoyable, but I need to additional expand. Regards.
+    Ghana Lotto
+    Reply
+    Anonymous15 September 2017 at 04:13
+
+    Hey Gyss Check out this...
+
+    Softpro Learning Center (SLC)is the training wing of Softpro India Computer Technologies Pvt.
+    Limited. SLC established itself in the year 2008.
+    SLC offer an intensive and extensive range of training/internship programs for B.Tech, BCA, MCA & Diploma students.
+    Softpro Learning Center is a best Summer training institute in Lucknow extends in depth knowledge of technology like .Net, Java, PHP and Android and also an opportunity to practically apply their fundamentals. SLC’s objective is to provide skilled manpower to support the vast development programs.
+
+    Reply
+    Akash Chauhan12 December 2017 at 03:29
+
+    Thanks for sharing such a valuable information. Get car on hire from Jaipur Car Rental . Quick pickup and drop at lowest price. Book your car rental in jaipur with driver,Rajasthan Tour and tour booking in Jaipur now! by tour and travels agencies in jaipur.
+    Reply
+    Kumar22 May 2018 at 17:34
+
+    Thank you so much in 2018 too.
+    Reply
+    Unknown2 June 2018 at 04:28
+
+    Get Full Body Massage by Our Professional Female Therapist and Get Proper Massage with Happy Ending.
+    Full Body Massage in Gurgaon
+    Body to Body Massage in Gurgaon
+    Deep Tissue Massage in Gurgaon
+    Aure Signature Massage in Gurgaon
+    Shiatsu Massage in Gurgaon
+    Thai Massage in Gurgaon
+    Head Massage in Gurgaon
+
+    _____________★★★★★★★★★
+    ___________ ★★★★★★★★★★
+    __________ ★★★★★★★★★★★
+    _________ ★★★★★★★★★★★★
+    _________ ★★★★★★★★★★★
+    _________★★★_★★★★★★★★★
+    ________ ★★★_★★★★★★★★★
+    _______ ★★★__★★★★★★★★
+    ______ ★★★___★★★★★
+    ___★★★★★__★★★★★★
+    ★★★★★★★_★★★★★★★
+    _★★★★_★★★★★★★★★★★★
+    _★★★★★★★★★★★★★★★★★★
+    _★★★★★★★★★★★★★★★★★★★
+    _★★★★★★★★★★★★★★★★★★★★
+    _★★★★★★★★★★★★★★★★★★★★
+    _★★★★★_★★★★★★★★★★★★★★
+    ★★★★__ ★★★★★★★★★★★★★★
+    ★★★_____ ★★★★★★★★★★★★
+    _★★★ _____★★★★★★
+    __★★★ ____★★★★★★
+    ____★★___★★★★★★★★
+    _____★★_★★★★★★★★★★
+    _____★★★★★★★★★★★★★★
+    ____★★★★★★★★★★★★★★★★★
+    ___★★★★★★★★★★★★★★★★★★★
+    ___★★★★★★CLICKHERE★★★★★★★★★
+    ___★★★★★★★★★★★★★★★★★★★★★★
+    ___★★★★★★★★★★★★★★★★★★★★★★★
+    ____★★★★★★★★★★★★____★★★★★★★★
+    _____★★★★★★★★★★★______★★★★★★★
+    _______★★★★★★★★★_____★★★★★★★
+    _________★★★★★★____★★★★★★★
+    _________★★★★★__★★★★★★★
+    ________★★★★★_★★★★★★★
+    ________★★★★★★★★★★
+    ________★★★★★★★★
+    _______★★★★★★★
+    _______★★★★★
+    ______★★★★★
+    ______★★★★★
+    _______★★★★
+    _______★★★★
+    _______★★★★
+    ______★★★★★★
+    _____★★★★★★★★
+    _______|_★★★★★★★
+    _______|___★★★★★★★
+    Reply
+    Rachel12 June 2018 at 03:47
+
+    Good content.
+    Best Training Classes for Core Java in Jaipur
+    Reply
+    Rachel20 June 2018 at 04:57
+
+    Thank you for posting..
+    Python Programming Language Classes in Jaipur
+    Reply
+    Rachel21 June 2018 at 05:18
+
+
+
+    Nice post.
+    Python Courses in Jaipur
+    Best Python Training Institutes in Jaipur
+    Reply
+    Rachel27 June 2018 at 03:58
+
+    Thank you so much for posting..
+    R Language Training in Jaipur
+    Reply
+    sport3 July 2018 at 01:44
+
+    You give good example for sport.I Think it's really amazing . Correct score predictions sites.
+    Reply
+    Unknown17 July 2018 at 02:52
+
+    Thank you very much. I fully agree with your blog, this really helped me!
+    Kid coders Singapore
+    Reply
+    Technogeekscs8 September 2018 at 00:45
+
+    Thanks for posting great information. Now a days python has become more popular programming language with data science.
+
+    Python Training in Pune
+    Python Classes in Pune
+    Python Institutes in Pune
+    Reply
+    suman22 September 2018 at 02:23
+
+    Thanks for sharing valuable information.keep blogging.
+    web programming tutorial
+    welookups
+    Reply
+    Bangaloreweb guru29 September 2018 at 01:04
+
+    Thanks for sharing article about web development company. Web Development Company in Bangalore | Best Web Design Company in Bangalore | Web Development Company in Bangalore
+    Reply
+    Komal Singh3 October 2018 at 04:31
+
+    WordPress Training
+    Web Designing Course in Delhi
+    SEO Course
+    PHP Training in Delhi
+    SMO Training
+    PPC Institute in Delhi
+    Reply
+    Unknown6 October 2018 at 02:28
+
+    Nice blog
+    Download computer Programming ebooks for free
+    www.khanbooks.net
+    Reply
+    Unknown10 October 2018 at 00:35
+
+    Thank you very much for posting and sharing this great Blog And Good Information.keep posting DevOps Online Training
+    Reply
+    Unknown24 October 2018 at 03:43
+
+    Really awesome work. keep on blogging
+    DevOps Online Training
+
+
+
+
+    Reply
+    Unknown24 October 2018 at 05:17
+
+    hanks for your information, the blog which you have shared is useful to us
+    Datastage Online Training
+
+    Reply
+    Unknown29 October 2018 at 23:23
+
+    I found this post interesting and worth reading. Keep going and putting efforts into good things. Thank you!!Data Science Online Training in Hyderabad
+
+    Reply
+    Unknown16 November 2018 at 23:22
+
+    Hi, nice blog.. This was simply superb,, thanks for sharing such a nice post with us... Best Python Online Training || Learn Python Course
+    Reply
+    Wama Software22 November 2018 at 00:32
+
+    I am really searching this type of blog.Thanks for sharing this blog with us.
+
+    Hire Angularjs Developer
+    Reply
+    Unknown8 December 2018 at 00:22
+
+    Programming is very good thing if you do it with full of interest. Your blog is helpful for us for beginers.. Great blog
+    Great work keep it up.. keep bloging like this..
+    Python Training in Jaipur
+
+    Hadoop Training in Jaipur
+
+    Software Testing training in Jaipur
+
+    MVC Training in Jaipur
+
+    Adobe Photoshop Training in Jaipur
+
+    NETWORKING Training In Jaipur
+    Reply
+    Unknown11 December 2018 at 08:24
+
+    topcoder links are broken
+    Reply
+    Unknown19 December 2018 at 06:42
+
+    Thank you!
+    Reply
+    Unknown25 December 2018 at 23:23
+
+    Nice blog.. keep sharing information like this.. Thanks for sharing such a useful content with us
+    Digitla Marketing Training in Jaipur
+    Php Training in Jaipur
+    Android Training in Jaipur
+    .Net Training in Jaipur
+    C C++ Training in Jaipur
+    Java Training in Jaipur
+    Software Testing Training in Jaipur
+    Tally Training in Jaipur
+    Hardware and Networking Training in Jaipur
+    Networking Training in Jaipur
+    Reply
+    Aman Goel31 December 2018 at 05:47
+
+    Competitive Programming is a great way to showcase your problem-solving skills, which is certainly something a lot of companies look for. Today, most interview questions of tech companies are level 2 or 3 problems that most Competitive Programmers anyway solve.
+
+    There are essentially 6 key steps in learning Competitive Programming:
+
+    - Step 1, Learn a well-known programming language
+    - Step 2, Starting with Competitive Programming
+    - Step 3, Get Familiar with Data Structures
+    - Step 4, Get Familiar with Algorithms
+    - Step 5, Starting with actual online competitions
+    - Step 6, Practice Practice Practice
+
+    At CareerHigh, we have created a detailed Competitive Programming roadmap to help you learn Competitive Programming from scratch. The objective is to help you understand each of the above steps in great detail so that you can develop strong problem-solving skills and end up with a dream job at your desired tech company.
+
+    https://careerhigh.in/roadmap/9
+    Reply
+    Replies
+        Chandrachud31 May 2019 at 01:28
+
+        This comment has been removed by the author.
+        Chandrachud31 May 2019 at 01:29
+
+        Thanks
+        Reply
+    sathyaramesh10 January 2019 at 02:26
+
+    I am really enjoying reading your well-written articles. It looks like you spend a lot of effort and time on your blog. I have bookmarked it and I am looking forward to reading new articles. Keep up the good work.
+    Hadoop Training in Chennai
+    Big Data Training in Chennai
+    Selenium Training in Chennai
+    Software Testing Training in Chennai
+    Java Training in Chennai
+    big data training in chennai anna nagar
+    hadoop training in Velachery
+    Reply
+    Komal Singh17 January 2019 at 04:32
+
+    Thanks for share such a great post
+
+    SEO Training in Dwarka
+    Web Designing Institute in Uttam Nagar
+    PHP Course in Janakpuri
+    Reply
+    ptiacademy30 January 2019 at 23:37
+
+    This comment has been removed by the author.
+    Reply
+    Python Training23 February 2019 at 23:45
+
+    Congratulation for the great post. Those who come to read your Information will find lots of helpful and informative tips. Python Training In Jaipur
+    Reply
+    pythonV25 February 2019 at 03:53
+
+    amazing content really informational !!
+
+    check our site too :pytholabs
+    Reply
+    pythonV26 February 2019 at 07:50
+
+    good job and thanks for sharing such a good blog You’re doing a great job.Keep it up !!
+
+    machine learning training in jaipur
+    Reply
+    manisha23 March 2019 at 05:27
+
+
+    Thank you for sharing such great information very useful to us.
+    Python Training in Gurgaon
+
+    Reply
+    Replies
+        Anuj Dwivedi11 November 2020 at 05:33
+
+        nice here also go Learn More
+        Reply
+    pslvseo a724 March 2019 at 21:59
+
+    A Computer Science portal for geeks. It contains well written, well thought and well explained computer science and programming articles, quizzes and practice/competitive programming/company interview Questions.
+    website: geeksforgeeks.org
+    Reply
+    Sergey27 March 2019 at 14:29
+
+    If you’re looking for a destination to outsource your software development, then one of the Eastern European countries may be a a good match for you. Check out this article to find how to find blockchain developers.
+    Reply
+    byodbuzz0627 March 2019 at 22:20
+
+    A Computer Science portal for geeks. It contains well written, well thought and well
+    explained computer science and programming articles, quizzes and practice/competitive
+    programming/company interview Questions.
+    website: geeksforgeeks.org
+    Reply
+    byodbuzz051 April 2019 at 23:56
+
+    A Computer Science portal for geeks. It contains well written, well thought and well
+    explained computer science and programming articles, quizzes and practice/competitive
+    programming/company interview Questions.
+    website: geeksforgeeks.org
+    Reply
+    byodbuzz053 April 2019 at 21:11
+
+    A Computer Science portal for geeks. It contains well written, well thought and well
+    explained computer science and programming articles, quizzes and practice/competitive
+    programming/company interview Questions.
+    website: geeksforgeeks.org
+    Reply
+    latestbazaar12 June 2019 at 00:51
+
+    hi
+    I really like your Knowledgeable post Great information.
+    fake Watches in India
+    Reply
+    unknown19 July 2019 at 04:28
+
+    Hiiii....Thank you so much for sharing Great information....Nice post....Keep move on...
+    Best Python Training Institutes in Hyderabad
+    Reply
+    OurKanpur.Com20 July 2019 at 11:46
+
+    thanks for share.
+
+    Blue world kanpur is a fantastic place in kanpur for enjoy with family or friends.
+
+    The blue world kanpur water park goes for keeping up global guidelines in that capacity guests are required to facilitate with the specialists to keep the recreation center sheltered and agreeable.
+    Reply
+    ptiacademy25 July 2019 at 02:14
+
+    This comment has been removed by the author.
+    Reply
+    manisha26 July 2019 at 02:53
+
+    Thanks for sharing such a great blog Keep posting..
+    web designing Course in Delhi
+    Web Designing institute in Delhi
+    Reply
+    Engvarta7 August 2019 at 03:22
+
+    Tremendous job. I admire you for taking time to publish this valuable content here. Keep allocatng.
+    English practice App | English speaking app
+    Reply
+    ptiacademy20 August 2019 at 06:24
+
+    This comment has been removed by the author.
+    Reply
+    Vijay Kumar27 August 2019 at 08:57
+
+    Very handy blog keep blogging. Are you looking for the top data science training in Gurgaon
+    Reply
+    Vijay Kumar27 August 2019 at 09:01
+
+    Very good post thank you so much. Join the affordable blockchain certification training in Gurgaon
+    Reply
+    Anonymous27 August 2019 at 23:10
+
+    Very informative blog, You have such an updated blog with peace of knowledge.
+    Free Digital marketing Course in dilshad Garden
+    Free Digital marketing Course in Shahadra
+    Free Digital marketing Course in Shalimaar Garden
+    Free Digital marketing Course in Vivek vihar
+    Free Digital marketing Course in Aanad vihar
+    Reply
+    smokegood31 August 2019 at 08:00
+
+    In this section, you can discover some of the facts behind gambling myths, get explanations for the terms used in the gambling industry and understand its size and how it is regulated.
+    joker123 terbaru
+    Probability is the likelihood of a specific outcome or event taking place.
+    joker123 terbaru
+    To work this out, you divide the number of specific outcomes with the number of possible outcomes.
+    Reply
+    9NagaAsia5 September 2019 at 07:12
+
+    This comment has been removed by the author.
+    Reply
+    9NagaAsia5 September 2019 at 07:30
+
+    This comment has been removed by the author.
+    Reply
+    9NagaAsia5 September 2019 at 07:32
+
+    This comment has been removed by the author.
+    Reply
+    9NagaAsia5 September 2019 at 07:40
+
+    This comment has been removed by the author.
+    Reply
+    9NagaAsia5 September 2019 at 07:41
+
+    This comment has been removed by the author.
+    Reply
+    9NagaAsia5 September 2019 at 07:42
+
+    This comment has been removed by the author.
+    Reply
+    9NagaAsia5 September 2019 at 07:43
+
+    This comment has been removed by the author.
+    Reply
+    9NagaAsia5 September 2019 at 07:44
+
+
+    Panduan Bermain Roullate
+
+    Tips Bermain Poker Online
+    Reply
+    9NagaAsia5 September 2019 at 07:46
+
+
+    Panduan Bermain Roullate
+
+    Tips Bermain Poker Online
+
+    Situs Judi Online
+
+    Situs Game Slot Online
+    Reply
+    9NagaAsia5 September 2019 at 07:47
+
+    This comment has been removed by the author.
+    Reply
+    9NagaAsia6 September 2019 at 01:42
+
+    Panduan Bermain Roullate
+    Tips Bermain Poker Online
+    Situs Judi Online
+    Situs Game Slot Online
+    Reply
+    braincarve11 September 2019 at 23:28
+
+    nice post..Abacus Classes in arumbakkam
+    vedic maths training arumbakkam
+    Abacus Classes in vadapalani
+    vedic maths training vadapalani
+    Abacus Classes in annanagar
+    vedic maths training annanagar
+    Abacus Classes in KK nagar
+    vedic maths training KK nagar
+    Reply
+    eMexo13 September 2019 at 01:38
+
+    Python training in Electronic City
+    Reply
+    Laurens9924 September 2019 at 22:46
+
+    I am so happy to read this. This is the type of manual that needs to be given and not the random misinformation that’s at the other blogs. Appreciate your sharing this best doc. http://www.jadwalligajerman.web.id
+    Reply
+    manisha27 September 2019 at 02:59
+
+    Thank you for providing such an awesome article and it is very useful blog for others to read.
+    PHP Training in Delhi
+    PHP Course in Delhi
+    Reply
+    SGR Sports Academy12 November 2019 at 23:46
+
+    Thank you very much for posting and sharing this great Blog And Good Information.keep posting.
+
+    Thanks
+    Sports Training Program with School
+    Reply
+    SGR Sports Academy12 November 2019 at 23:48
+
+    Thank you very much for posting and sharing this great Blog And Good Information.keep posting.
+
+    Thanks
+    Sports Training Program with School
+    Reply
+    Naveen14 November 2019 at 01:09
+
+    If you are looking to BBA Aviation colleges in Bangalore. Here is the best college to study BBA Aviation in Bangalore. You can click the following link to know more about Best BBA Aviation Colleges in Bangalore
+    BBA Aviation colleges in Bangalore
+    Reply
+    MS Dynamics20 November 2019 at 03:57
+
+    The information which you have provided in this blog is really useful to everyone. Thanks for sharing.
+    Python Training in Hyderabad
+    Reply
+    Naveen7 December 2019 at 03:18
+
+    BCA Cloud Computing. One of the best demanded course in recent times. If you are looking to best BCA Cloud Computing Colleges, we will help you. Here is the link to study BCA Cloud Computing in Colleges Bangalore.
+    BCA Cloud Computing
+    Reply
+    Medical Journals List14 December 2019 at 04:25
+
+    peer reviewed journals details.
+
+    ugc journals details.
+    Reply
+    Aryabhatta Jr15 December 2019 at 04:14
+
+    Helpful :)
+    Reply
+    Anonymous20 December 2019 at 17:54
+
+    Compared with a lot of please note consuming blog, you no longer attract immediately in which you need the text to seem. https://imgur.com/a/rhROhP7 https://imgur.com/a/bOOMEji http://m8predtcuc.dip.jp http://ljdxdrp01r.dip.jp https://imgur.com/a/LkgAxgz https://imgur.com/a/10b55m7 https://imgur.com/a/EVHDhtJ
+    Reply
+    Naveen6 January 2020 at 21:37
+
+    Physiotherapy Colleges in Bangalore
+    BBA Aviation colleges in Bangalore
+    Optometry Colleges in Bangalore
+    BSc Cardiac care technology colleges in Bangalore
+    BSc Perfusion Technology colleges in Bangalore
+    BSc Medical Imaging Technology Colleges in Bangalore
+    Reply
+    manish17 January 2020 at 22:48
+
+
+    Thank you for posting this blog.
+    We are one of the Best Dealer in LASER PRINTER PARTS in Delhi india at low rate
+    We at partsbaba.com providing Best quality LASER printer parts IN Delhi INDIA AT LOW RATES.
+
+    Reply
+    Unknown21 January 2020 at 03:56
+
+    MGLSarees.com - Shop Best Mangalagiri Handloom Cotton and Pattu Sarees | Dress Materials - Shop for the exclusive stylish and ethnic handloom sarees online at great price. ✯Free Shipping. Select from the best range of womens Dress Materials. Buy handloom silk and pattu sarees online, buy exclusive handloom cotton saris online, purchase handloom cotton sarees online, latest designer handloom saris, attractive prices, worldwide express shipping. MGLSarees - Online Mangalagiri Handloom Cotton and Pattu Sarees | Dress Materials - Online Shopping Website, Mangalagiri
+    Mangalagiri Sarees and Dress Materials
+    Mangalagiri Pattu Sarees
+    Mangalagiri Dress Materials
+    Reply
+    Jyoti Singh8 February 2020 at 03:22
+
+    Nice Blog!! For more you can visit here:-
+    google digital marketing certification
+    android application development
+    data science course
+    ethical hackers academy
+    open school
+    python class
+    web design classes
+    android developer training
+    Reply
+    Wild noodle5 March 2020 at 21:57
+
+    Nice article! I am sure it has helped so many people seeking to enhance the concept of modern programming languages.Online programming challenges definitely help built concepts and confidence of a programmer.
+    Reply
+    Anonymous21 March 2020 at 05:13
+
+    Thanks for Sharing This Article.It is very so much valuable content. I hope these Commenting lists will help to my website
+    welcome to akilmanati
+    akilmanati
+    Reply
+    Unknown21 April 2020 at 00:10
+
+    Nice blog!! Join Samyak Computer Classes to develop your skills.
+    For more information visit here :-
+    Robotics Course in Jaipur
+    SAP Course in Jaipur
+    Python in Jaipur
+    programming languages in Jaipur
+    Reply
+    Mr Rahman22 April 2020 at 04:08
+
+    Really Nice Post & Thanks for sharing.
+    Oflox Is The Best Digital Marketing Company In Dehradun
+    Reply
+    Unknown22 April 2020 at 23:59
+
+    Nice Blog!! I appriciate your way to present your blog. If you want to do any professional course then join Samyak Computer Classes and visit here:-
+    Java Course in Jaipur
+    Web Designing Diploma Course in Jaipur
+    Robotics Course in Jaipur
+    Advanced Excel in Jaipur
+    programming languages in Jaipur
+    Reply
+    Mazhar1 May 2020 at 14:03
+
+    GrueBleen Creative Club - Digital Marketing is booming now. People & Brands are engaging Social Media for content creation alike. People are focusing to share their beautiful moments on Social Media. But, Brands are creating post for their product or service and Social Commitment alike. Brands are choose Social Media Agencies for their trust creation in Digital Media. Here, is the details that provided by GrueBleen Creative Club, Riyadh.
+    Branding Agency Riyadh
+    Marketing Agency Riyadh
+    Digital Marketing Agency Riyadh
+    Digital Marketing Agency Saudi Arabia
+    Digital Marketing Agency Jeddah
+    Social Media Agency Riyadh
+    Social Media Agency Jeddah
+    Social Media Agency Saudi Arabia
+    Branding Agency Jeddah
+    Marketing Agency Jeddah
+    Marketing Agency Saudi Arabia
+    Branding Agency Saudi Arabia
+    Reply
+    Mazhar6 May 2020 at 12:45
+
+    Here are the list of best Advertising Agency Riyadh, Branding Agency Riyadh & Marketing Agency In Riyadh. Click and you can check the details from the word which you love to know.
+    Reply
+    SUNNY KUMAR29 May 2020 at 20:06
+
+    you have just copy and pasted the blog written on codechef ( https://www.codechef.com/guide-to-competitive-programming).
+    Reply
+    bhanu28 June 2020 at 19:48
+
+    computer classes for beginners near me
+    Reply
+    Accelerate Your Future. Learn Anytime, Anywhere16 July 2020 at 05:19
+
+    This article is very much helpful and I hope this will be useful information for the needed one. Keep on updating these kinds of informative things.
+    Reply
+    John Loomer25 July 2020 at 01:32
+
+    Forex Signals, MT4 and MT5 Indicators, Strategies, Expert Advisors, Forex News, Technical Analysis and Trade Updates in the FOREX IN WORLD
+
+    Forex Signals Forex Strategies Forex Indicators Forex News Forex World
+    Reply
+    Ashwin15 August 2020 at 12:30
+
+    Nice.. Thanks for the information.
+    Machine Learning training in Pallikranai Chennai
+
+    Data science training in Pallikaranai
+
+    Python Training in Pallikaranai chennai
+
+    Bigdata training in Pallikaranai chennai
+
+    Spark with ML training in Pallikaranai chennai
+    Reply
+    PuzzlesMessu5 September 2020 at 10:32
+
+    Buy Sports Bags Online
+
+    Sports Gym Handbag - Buy sports bags online at affordable price. We provide the best sports gym handbag and sports bags online.
+
+    https://fitnessbreath.com/sports-bags/
+    Reply
+    Michael6 September 2020 at 10:50
+
+    Thanks for sharing. http://alltopc.com/
+    Reply
+    Rose6 September 2020 at 10:51
+
+    https://getdailybook.com/
+    Reply
+    ravisynit13 September 2020 at 08:30
+
+    great blog for programmer we at SynergisticIT offer the best aws training course in bay area
+    Reply
+    Ontario Security license15 September 2020 at 03:54
+
+    Shield Security Solutions Offers Security Guard License Training across the province of Ontario. Get Started Today!
+
+    Security Guard License | Security License | Ontario Security license | Security License Ontario | Ontario Security Guard License | Security Guard License Ontario
+    Reply
+    DJ22 September 2020 at 03:32
+
+    Thanks for sharing such valuable information to us, really informative. keep going expecting for from you.
+
+    Regards..
+    Dinesh
+
+    PHP Traning in chennai
+    Reply
+    kvm tec india30 September 2020 at 05:09
+
+    https://www.seekace.com/
+    From Responsive web layout to custom-oriented features, from WordPress to PHP, we can assist you in designing and developing a truly engaging experience for your customers on your chosen digital platform
+
+    https://www.seekace.com/web-development
+    Reply
+    regina filangee8 October 2020 at 02:01
+
+
+    Good site you have here.. It’s hard to find quality writing like yours nowadays. I seriously appreciate people like you! If you are gaming enthusiast and is looking for the best monitor recommendations, you can always visit us . We have made a list of some of the best monitors with the best connectivity options and apt for programming and coding and graphic designing.
+    Reply
+    regina filangee8 October 2020 at 02:01
+
+
+    Good site you have here.. It’s hard to find quality writing like yours nowadays. I seriously appreciate people like you! If you are gaming enthusiast and is looking for the best monitor recommendations, you can always visit us . We have made a list of some of the best monitors with the best connectivity options and apt for programming and coding and graphic designing.
+    Reply
+    marry19 October 2020 at 23:46
+
+    This information will be usefull thanks for sharing.
+    Python Training in Gurgaon
+    Python Course in Gurgaon
+    Reply
+    Cloudi527 October 2020 at 04:47
+
+    Thanks for providing great informatic and looking beautiful blog, really nice required information & the things I never imagined, and I would request, write more blog and blog post like that for us. Thank you once again
+    by cognex is the AWS Training in Chennai
+    Reply
+    Laveena Yogi28 October 2020 at 02:29
+
+    Great Post! This is an amazing article. Thanks for Sharing such a great post. Keep Posting!! Click here to more information about it
+    Reply
+    Anuj Dwivedi11 November 2020 at 05:32
+
+    if you are looking for best learning and earning Learn More and best earning center click here
+    Reply
+    Quickbooks Expert11 December 2020 at 02:12
+
+    Nice post!
+
+    Worried About QuickBooks Error ?Get in touch with QuickBooks expert for instant solution.
+    Click Here to know how to fix QuickBooks Form 941 Error
+
+    Dial on QuickBooks Error Support Phone Number +1-855-977-7463.
+    Reply
+    Quikads26 January 2021 at 04:00
+
+    Thank you for this information.
+    eco+ refrigerator price in Bangladesh
+    Reply
+    Taamira Shipping Company in Chennai27 January 2021 at 06:17
+
+    https://techie-notebook.blogspot.com/2012/07/poka-yoke-applying-mistake-proofing-to.html
+    Reply
+    Anonymous28 January 2021 at 20:58
+
+    I am deeply attracted by your post. It is really a nice and informative one. I will recommend it to my friends. Also, you can visit here: Angularjs development company
+    Reply
+    QuickBooks Support8 February 2021 at 02:38
+
+    Nice Blog !
+    At times, while filing form 941, you may face QuickBooks Form 941 Error when the total sum of the tax amount exceeds $2500. To fix such issue, you must contact our experts via QuickBooks Support Number and get permanent ways to solve QuickBooks problems.
+    Reply
+    Unknown22 February 2021 at 03:48
+
+    Your blog is very nice and has sets of the fantastic piece of information. Thanks for sharing with us. If you face any technical issue or error, visit:
+
+    Quickbooks customer service
+    Reply
+    digital shyna8 March 2021 at 02:24
+
+    This information is very good
+    python course
+    Reply
+    Protocloud Technologies9 March 2021 at 21:02
+
+    Great Blog!!
+    Really appreciate you for sharing this amazing piece of content with us.
+    Digital marketing certification course in jaipur
+    Reply
+    digital shyna13 March 2021 at 02:52
+
+    This comment has been removed by the author.
+    Reply
+    Asinfovision18 March 2021 at 02:33
+
+    I am very happy to read this article.. thanks for giving us nice info. fantastic walk-through. I appreciate this post.
+    Best programming courses in Gurgaon
+    Reply
+    Fullstack Techies20 March 2021 at 03:37
+
+    Informative Blog, Hire ASP.Net Programmers at https://fullstacktechies.com/
+    Reply
+    Python6 April 2021 at 05:43
+
+    Thanks for this valuable information!
+    Data Science Online Training
+    Reply
+    Ramesh14 June 2021 at 01:50
+
+    Great Content. It will useful for knowledge seekers. Keep sharing your knowledge through this kind of article.
+    Node JS Training in Chennai
+    Perl Training in Chennai
+    Reply
+    shreekavi13 July 2021 at 00:45
+
+
+    Nice blog! Thanks for sharing this valuable information
+    Angularjs Training in Bangalore
+    Angularjs classes in pune
+    Angularjs Training in hyderabad
+    Angularjs Training in Gurgaon
+    Angularjs Training in delhi
+    Reply
+    santanu14 July 2021 at 00:50
+
+    laser hair removal service
+    non sparking spanners
+    best spiritual books
+
+
+    Reply
+    hema15 July 2021 at 03:22
+
+    Thank you for the useful blog. It's very interesting. Share more updates.
+    Spoken English Classes In T Nagar
+    Spoken English Classes In Porur
+
+
+
+    Reply
+    rithi27 July 2021 at 00:54
+
+    This post is so interactive and informative.keep updating more information...
+    Artificial Intelligence Course in Mumbai
+    Artificial Intelligence Course in Ahmedabad
+    Artificial Intelligence Course in Kochi
+    Artificial Intelligence Course in Trivandrum
+    Artificial Intelligence Course in Kolkata
+    Reply
+    m7 September 2021 at 11:17
+
+    This post is very supportive for me. Please always post like this, it’s very good stuff. Very thanks a lot. Keep always do posting.
+
+    MBA Operations Management Project
+
+    MBA Finance Project
+
+    MBA HR Project
+
+    MBA Project for HR
+
+    MBA Marketing Project
+
+    Buy MBA Project
+
+    Reply
+    Jaipur Routes15 September 2021 at 01:36
+
+    Great information to get. Really a nice article and very informative on programming. For a cheap tour packages to Rajasthan contact our Tour Operator in Jaipur
+
+    Het more details on jaipurroutes.com
+    Reply
+    Phoebe Geller16 September 2021 at 04:53
+
+    Hey! Mind-blowing blog. Keep writing such beautiful blogs. In case you are struggling with issues on QuickBooks software, dial QuickBooks Customer Service . The team, on the other end, will assist you with the best technical services.
+    Reply
+
+Load more...
+
+Home
+Subscribe to: Post Comments (Atom)
+About Me
+My photo
+
+Triveni Mahatha
+
+View my complete profile
+Blog Archive
+
+    ▼  2014 (1)
+        ▼  July (1)
+            Getting Started with the Sport of Programming
+
+
+Simple theme. Powered by Blogger.

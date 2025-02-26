@@ -1,0 +1,82 @@
+Your functions are designed to parse user input and determine:
+
+    A command (verb) from the user's input.
+    A target (noun or direction) if applicable.
+
+Let's go through the flow of these functions and highlight potential issues or improvements.
+Flow of validateCommand(Action *action)
+
+    Define a list of valid verbs (validVerb[]), which includes "look", "go", and directions.
+    Loop through validVerb[] to check if action->firstWord is a valid verb.
+    If a valid verb is found in firstWord, store it in action->command and return.
+    If firstWord is not a verb, loop through validVerb[] again, but now checking action->secondWord.
+    If secondWord is a valid verb, store it in action->command.
+    If neither firstWord nor secondWord is a valid verb, print "No valid verb.".
+
+🔴 Issues in validateCommand()
+
+    Missing break; inside the loop:
+        You don't need to keep looping once a match is found. This makes the function slightly inefficient.
+
+    Potential buffer overflow risk in strncpy calls:
+        The last character of action->command should be explicitly set to '\0', but sizeof(action->firstWord) - 1 is mistakenly used instead of sizeof(action->command) - 1.
+
+    No explicit return after finding a command in secondWord
+        If secondWord is a valid verb, the function should return immediately.
+
+✅ Suggested Fixes for validateCommand()
+
+    Add break; when a verb is found to avoid unnecessary iterations.
+    Use the correct size in strncpy to avoid overwriting memory.
+    Ensure an immediate return if secondWord is valid.
+
+Flow of validateTarget(Action *action)
+
+    Define a list of valid targets (validTarget[]), which includes "north", "south", "east", "west".
+    Loop through validTarget[] to check if action->firstWord is a valid target.
+    If a valid target is found in firstWord, store it in action->target.
+    If firstWord is not a target, loop through validTarget[] again, but now checking action->secondWord.
+    If secondWord is a valid target, store it in action->target.
+    If neither firstWord nor secondWord is a valid target, set action->target to an empty string.
+
+🔴 Issues in validateTarget()
+
+    validTargets is set to 6 but only 4 targets exist
+        This could lead to out-of-bounds memory access when looping.
+
+    Redundant check on isTarget
+        If isTarget is already true, there is no need to check secondWord.
+
+    Potential buffer overflow risk in strncpy calls
+        The last character of action->target should be explicitly set to '\0'.
+
+    Ensure an explicit return after finding a target
+        Once a valid target is found, no need to keep looping.
+
+✅ Suggested Fixes
+
+    Fix the incorrect array size declaration
+
+int validTargets = 4;  // Fix array size
+
+Add break; when a target is found
+
+for (int i = 0; i < validTargets; i++) {
+    if (strcmp(action->firstWord, validTarget[i]) == 0) {
+        isTarget = true;
+        break;
+    }
+}
+
+Fix buffer overflow risk by using correct sizeof in strncpy
+
+    strncpy(action->command, action->firstWord, sizeof(action->command) - 1);
+    action->command[sizeof(action->command) - 1] = '\0'; // Ensure null termination
+
+    Add an immediate return; after setting action->target
+
+🚀 Final Notes
+
+    Your logic mostly works, but you need efficient exits (break;) and safe string copying (strncpy with correct sizes).
+    Fixing the array size issue in validateTarget() will prevent out-of-bounds memory access.
+    The debug printf statements are useful for testing, but you may want to remove them later.

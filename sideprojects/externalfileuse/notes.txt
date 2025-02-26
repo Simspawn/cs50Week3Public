@@ -1,0 +1,13 @@
+I get this to compile with gcc. I don't really feel like learning to make make files right now. It really
+doesn't seem too hard but fuck it. What matters now is that I should be able to include a custom header
+in my fbp. This should keep the main program from getting cluttered. I have now even created a .exe
+which should execute the program. Let's try running it from outside vscode. Oh, right, I'd have to compile it outside
+of codespaces. Well that's a bitch. Hold on....
+
+So on my desktop, I get yelled at if I try to compile each file individually, however if I use
+gcc main.c my_functions.c -o linked.exe it creates an exe file that opens a command terminal.
+Unfortunately for now the window immediately closes, however the output is still shown in VScode
+terminal when using ./linked.exe. (Also, you have to manually save each edit. That's really annoying.
+I'll for sure have to figure out that autosave bs codespaces does.)
+
+This is a huge step forward in modularity. My game engine is deff going to improve using this.

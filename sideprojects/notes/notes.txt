@@ -1,0 +1,7 @@
+    scanf("%s", word, sizeof(word[5]));
+int num = 100;
+num += 100;
+num -= 50;
+num *= 2;
+num /=2;
+num %= 10;
